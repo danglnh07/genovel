@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "Genovel - Novel Content Extractor",
+    "version": "1.0",
+    "description": "Fast copy tool for Booktoki and other novel sites",
+    "permissions": [
+        "activeTab",
+        "clipboardWrite",
+        "https://booktoki469.com/*"
+    ],
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_title": "Genovel - Novel Content Extractor"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://booktoki469.com/*"
+            ],
+            "js": [
+                "script.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ]
+}
