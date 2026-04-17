@@ -1,0 +1,16 @@
+services:
+  postgres:
+    container_name: postgres-genovel
+    image: postgres:18.1-alpine3.22
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=genovel
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data: {}
