@@ -8,7 +8,12 @@ public class ExceptionHandler(ILogger<ExceptionHandler> logger) : IExceptionHand
 {
     public async ValueTask<bool> TryHandleAsync(HttpContext context, Exception exception, CancellationToken cancellationToken)
     {
-        logger.LogError("Exception: {Exception message}", exception.Message);
+        logger.LogError("Exception: {exception}", new
+        {
+            exception.Message,
+            context.Request.Path,
+            Trace = exception.StackTrace?.ToString()
+        });
 
         // Identify which exception type to handle
         (string Detail, string Title, int Status) = exception switch
