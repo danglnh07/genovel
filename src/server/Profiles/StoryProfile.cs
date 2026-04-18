@@ -1,5 +1,6 @@
 using AutoMapper;
 using Genovel.Features.Stories.CreateStory;
+using Genovel.Features.Stories.GetStoryById;
 using Genovel.Features.Stories.UpdateStory;
 using Genovel.Models;
 
@@ -27,6 +28,9 @@ public class StoryProfile : Profile
             .ForMember(dest => dest.IsOriginalCompleted, opt => opt.Condition(src => src.IsOriginalCompleted.HasValue));
         CreateMap<Story, UpdateStoryResult>();
         CreateMap<UpdateStoryResult, UpdateStoryResponse>();
+
+        CreateMap<Story, GetStoryByIdResult>();
+        CreateMap<GetStoryByIdResult, GetStoryByIdResponse>();
 
     }
 }
