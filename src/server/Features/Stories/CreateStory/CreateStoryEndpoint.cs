@@ -43,7 +43,6 @@ public class CreateStortEndpoint : ICarterModule
             var resp = mapper.Map<CreateStoryResponse>(result.Value);
             return Results.Created($"/api/stories/{resp.Id}", resp);
         })
-            .RequireCors("AllowSpecificOrigin")
             .WithName("CreateStory")
             .WithDescription("Create a story metadata")
             .WithTags("Story")

@@ -30,7 +30,6 @@ public class DeleteStortEndpoint : ICarterModule
 
             return Results.NoContent();
         })
-            .RequireCors("AllowSpecificOrigin")
             .WithName("DeleteStory")
             .WithDescription("Soft delete a story")
             .WithTags("Story")
