@@ -26,29 +26,6 @@ public class GetStoriesEndpoint : ICarterModule
                 "/api/stories",
                 async ([AsParameters] GetStoriesParams param, ISender sender, IMapper mapper, ILogger<GetStoriesEndpoint> logger) =>
         {
-            // Validate param
-            if (param.Page < 1)
-            {
-                logger.LogWarning("invalid value for page, proceed to default value (1): {page}", param.Page);
-                param.Page = 1;
-            }
-
-            if (param.Size < 1)
-            {
-                logger.LogWarning("invalid value for size, proceed to default value (10): {size}", param.Size);
-                param.Size = 10;
-            }
-            else if (param.Size > 100)
-            {
-                logger.LogWarning("invalid value for size, proceed to default value (10): {size}", param.Size);
-                param.Size = 10;
-            }
-
-            if (param.Genres is not null && param.Genres.Length == 0)
-            {
-                param.Genres = null;
-            }
-
             // Create command from request
             var query = mapper.Map<GetStoriesQuery>(param);
 

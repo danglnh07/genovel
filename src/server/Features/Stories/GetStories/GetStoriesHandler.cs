@@ -7,11 +7,11 @@ using Marten.Pagination;
 
 namespace Genovel.Features.Stories.GetStories;
 
-public class GetStoriesQuery(int page = 1, int size = 10, string[]? genres = null) : IQuery<Result<GetStoriesResult>>
+public class GetStoriesQuery : IQuery<Result<GetStoriesResult>>
 {
-    public int Page { get; set; } = page;
-    public int Size { get; set; } = size;
-    public string[]? Genres = genres;
+    public int Page { get; set; }
+    public int Size { get; set; }
+    public string[]? Genres { get; set; }
 }
 
 public class GetStoriesItem

@@ -40,7 +40,9 @@ public class StoryProfile : Profile
         CreateMap<Story, GetStoryByIdResult>();
         CreateMap<GetStoryByIdResult, GetStoryByIdResponse>();
 
-        CreateMap<GetStoriesParams, GetStoriesQuery>();
+        CreateMap<GetStoriesParams, GetStoriesQuery>()
+            .ForMember(dest => dest.Page, opt => opt.MapFrom(src => src.Page == null || src.Page < 1 ? 1 : src.Page.Value))
+            .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.Size == null || src.Size < 1 ? 10 : src.Size.Value));
         CreateMap<GetStoriesResult, GetStoriesResponse>();
         CreateMap<GetStoriesResult, GetStoriesResponse>()
             .ConstructUsing((src, ctx) => new GetStoriesResponse(
