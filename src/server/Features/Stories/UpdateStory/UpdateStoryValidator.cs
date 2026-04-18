@@ -17,7 +17,7 @@ public class UpdateStoryValidator : AbstractValidator<UpdateStoryCommand>
             .Must(description => description is null || !string.IsNullOrEmpty(description))
             .WithMessage("Story description must not be empty");
         RuleFor(x => x.Genres)
-            .Must(genres => genres is null || !genres.Any())
+            .Must(genres => genres is null || genres.Any())
             .WithMessage("Story genres must not be empty");
         RuleFor(x => x.Language)
             .Must(language => language is null || !string.IsNullOrEmpty(language))
