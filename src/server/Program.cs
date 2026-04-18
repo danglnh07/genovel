@@ -17,6 +17,22 @@ try
     // Check if connection string is set
     var conn = builder.Configuration.GetConnectionString("DefaultConn") ?? throw new Exception("Connection string is not set");
 
+    // Add CORS support
+    var origins = builder.Configuration.GetSection("CORS").Get<string[]>();
+    if (origins is null || origins.Length == 0)
+    {
+        Log.Warning("Found no CORS setup, default to all (*)");
+        origins = ["*"];
+    }
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowSpecificOrigin", policy =>
+        {
+            policy.WithOrigins(origins)
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+    });
     // Add OpenAPI support
     builder.Services.AddOpenApi();
     // Register custom global exception handler
@@ -48,6 +64,8 @@ try
 
     // === Build application ===
     var app = builder.Build();
+
+    app.UseCors();
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())

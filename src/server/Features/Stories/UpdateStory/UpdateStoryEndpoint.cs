@@ -57,6 +57,7 @@ public class UpdateStortEndpoint : ICarterModule
             var resp = mapper.Map<UpdateStoryResponse>(result.Value);
             return Results.Ok(resp);
         })
+            .RequireCors("AllowSpecificOrigin")
             .WithName("UpdateStory")
             .WithDescription("Update a story metadata partially")
             .WithTags("Story")

@@ -45,6 +45,7 @@ public class GetStoryByIdEndpoint : ICarterModule
             // Return response
             return Results.Ok(mapper.Map<GetStoryByIdResponse>(result.Value));
         })
+            .RequireCors("AllowSpecificOrigin")
             .WithName("GetStoryById")
             .WithDescription("Get a story by ID, including all story information and a minimal list of all chapters")
             .WithTags("Story")

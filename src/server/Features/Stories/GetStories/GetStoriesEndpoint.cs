@@ -46,6 +46,7 @@ public class GetStoriesEndpoint : ICarterModule
             var resp = mapper.Map<GetStoriesResponse>(result.Value);
             return Results.Ok(resp);
         })
+            .RequireCors("AllowSpecificOrigin")
             .WithName("GetStories")
             .WithDescription("Get paged list of stories with minimal information, ordered by their updated time, descending")
             .WithTags("Story")
